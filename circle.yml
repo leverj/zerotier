@@ -2,17 +2,19 @@ machine:
   services:
     - docker
 
+test:
+  override:
+      - docker info
+
 deployment:
   hub:
     branch: master
     commands:
-      - docker info
       - docker build -t coinpit/zerotier .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push coinpit/zerotier
     branch: develop
     commands:
-      - docker info
       - docker build -t coinpit/zerotier:develop .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push coinpit/zerotier
