@@ -5,11 +5,16 @@ machine:
 test:
   override:
       - docker info
-      - docker build -t coinpit/zerotier .
 
 deployment:
   hub:
     branch: master
     commands:
+      - docker build -t coinpit/zerotier .
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push coinpit/zerotier
+    branch: develop
+    commands:
+      - docker build -t coinpit/zerotier:develop .
       - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
       - docker push coinpit/zerotier
