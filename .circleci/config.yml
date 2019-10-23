@@ -1,0 +1,21 @@
+# Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10.15.1
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: false
+      - run: |
+          if [ "$CIRCLE_BRANCH" == "master" ] ; then
+            docker info
+            docker build -t leverj/zerotier:1.4.6 .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push leverj/zerotier:1.4.6
+            docker logout
+          fi
