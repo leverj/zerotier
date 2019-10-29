@@ -7,4 +7,4 @@ RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y ca-certi
     service zerotier-one stop && \
     rm /var/lib/zerotier-one/identity.secret && rm /var/lib/zerotier-one/identity.public && rm /var/lib/zerotier-one/authtoken.secret
 
-CMD /var/lib/zerotier-one/zerotier-one && -f /var/lib/zerotier-one/reconnect.sh && /var/lib/zerotier-one/reconnect.sh
+CMD /var/lib/zerotier-one/zerotier-one
