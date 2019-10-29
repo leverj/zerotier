@@ -14,8 +14,8 @@ jobs:
       - run: |
           if [ "$CIRCLE_BRANCH" == "master" ] ; then
             docker info
-            docker build -t leverj/zerotier:1.4.6 .
+            docker build -t leverj/zerotier:1.4.7 .
             docker login -u $DOCKER_USER -p $DOCKER_PASS
-            docker push leverj/zerotier:1.4.6
+            docker push leverj/zerotier:1.4.7
             docker logout
           fi
